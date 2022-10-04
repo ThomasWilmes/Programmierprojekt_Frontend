@@ -4,9 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Covid-19 Tracker</title>
+    <title>Netflix</title>
 </head>
 <body>
+    <div class="container text-center">
+        <h2> Netflix Recommendation-System</h2>
+    </div>
+
    
     <footer class="footer mt-auto py-3 bg-light">
         <div class="container text-center">
