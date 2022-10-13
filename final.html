@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programmierprojekt</title>
+    <link href="https://fonts.googleapis.com/css?family=Mukta+Mahee" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <h1>Netflix Recommendation  Systems</h1>
+    </div>
+
+<form>
+      <label for="eingabe">Eingabe Film-ID:</label>
+      <input name="eingabe" type="text" id="eingabe" >
+ <input type="button" value="Filmempfehlungen anzeigen" onclick="fetchData()">
+</form>
+<script>
+function fetchData() {
+let var1="7166,5";
+var eingabe  = document.getElementById("eingabe").value;
+const request = fetch("https://backend-api-gruppe5.herokuapp.com/recommendation?movie_id="+eingabe);
+
+const app = document.getElementById('app');
+const movies = document.createElement('div');
+movies.setAttribute('class', 'movies');
+app.appendChild(movies);
+request
+  .then(data => data.json())
+  .then((data) => {
+    // console.log(data);
+    data.forEach((movie) => {
+      const moviedetail = document.createElement('div');
+      moviedetail.setAttribute('class', 'moviedetail');
+
+      const title = document.createElement('h2');
+      title.textContent = `${movie.movie_title}`;
+
+ const director = document.createElement('p');
+
+      const desc = document.createElement('p');
+      desc.textContent = `Emfpehlungen:  ${movie.recommendations_titles}`;
+
+      movies.appendChild(moviedetail);
+      moviedetail.appendChild(title);
+      moviedetail.appendChild(director);
+      moviedetail.appendChild(desc);
+    });
+  })
+  .catch((err) => {
+    console.error(err);
+ });
+
+}
+</script>
+<div id="tags"></div>
+  </body>
+</html>
