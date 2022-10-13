@@ -10,6 +10,10 @@
     <div class="container text-center">
         <h2> Netflix Recommendation-System</h2>
     </div>
+    <div class="container text-center">
+        <p><a href="final.html">Final-HTML</a></p>
+        <p><a href="search.html">Search-HTML</a></p>
+    </div>
 
    
     <footer class="footer mt-auto py-3 bg-light">
