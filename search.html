@@ -1,0 +1,76 @@
+
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="https://www.2concepts.de/assets/js/jquery.min.js"></script>
+	    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programmierprojekt</title>
+    <link href="https://fonts.googleapis.com/css?family=Mukta+Mahee" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+</head>
+
+<body>
+	    <div id="app">
+      <h1>Netflix Recommendation  Systems</h1>
+
+        <div class="autocom-box"></div>
+        <!-- here list are inserted from javascript -->
+        <div class="mark"><i class="fas fa-times"></i></div>
+        <div class="icon"><i class="fas fa-plus"></i></div>
+      </div>
+    </div>
+
+    <div class="row">
+      <h2 class="row__title">Selected movies</h2>
+      <ul class="output" id="movies"></ul>
+
+
+    </div>
+	<!-- HIER WIRD GESUCHT -->
+	<form>
+		<input id="searchfield" type="text" size="40" style="height:30px"  placeholder="Suchen...">
+	</form>
+	
+	<!-- HIER WERDEN DIE ERGEBNISSE AUSGEGEBEN -->
+	<div id="results"></div>
+	
+
+	<script>
+// HOLE DATEN VON JSON
+		var xhReq = new XMLHttpRequest();
+		xhReq.open("GET", "https://backend-api-gruppe5.herokuapp.com/movies", false);
+		xhReq.send(null);
+		var jsonObject = JSON.parse(xhReq.responseText);
+		
+		
+		// DURCHSUCHE JSON
+		$('#searchfield').keyup(function(){
+			
+			// HOLE DATEN AUS SUCHFELD
+			var searchField = $(this).val();
+			var output = '';
+			
+			// WENN SUCHFELD LEER
+			if(searchField === '')  {
+				$('#results').html('Bitte suchen...');
+				return;
+			}
+
+			var regex = new RegExp(searchField, "i");
+			
+			// DURCHSUCHE DAS JSON
+			$.each(jsonObject, function(key, val){
+				if ((val.title.search(regex) != -1)) {
+					// GEBE ERGEBNISSE AUS
+					output += '<h5>' + val.title + '</h5>';
+				}
+			});
+			
+			// SCHREIBE ERGEBNISSE INS HTML
+			$('#results').html(output);
+		});		
+	</script>
+</body>
+</html>
