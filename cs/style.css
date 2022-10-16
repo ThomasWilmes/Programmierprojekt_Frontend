@@ -48,6 +48,7 @@ background-color: #585858;
   opacity: 0.7;
 }
 .banner {
+  background-image: url("https://www.omnilab.de/wp-content/uploads/2020/10/Header_Wissenschaft-auf-der-Leinwand-1220x610-1.png");
   background-size: cover;
   background-position: center center;
   color: white;
