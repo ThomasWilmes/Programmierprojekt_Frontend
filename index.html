@@ -1,0 +1,106 @@
+<!doctype html>
+<html>
+<head>
+        <meta charset="utf-8">
+        <title>Netflix Recommendation System</title>
+        <link href="/cs/style.css" rel="stylesheet">
+        <!-- JQUERY-Src von Steffen -->
+        <script src="https://programmierprojekt.meyer-nortrup.de/js/jquery.min.js"></script>
+
+        <!-- SELECT2-Src -->
+        <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+</head>
+
+<body>
+  <div class="navigation-bar">
+  <div id="navigation-container">
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Netflix_icon.svg/1200px-Netflix_icon.svg.png" width="70" height="70">
+  </div>
+
+  <div class="banner">
+    <div class="banner__contents">
+    </div>
+  </div>
+
+
+        <script>
+                // HOLE DATEN VON JSON
+                var xhReq = new XMLHttpRequest();
+                xhReq.open("GET", "https://backend-api-gruppe5.herokuapp.com/movies", false);
+                xhReq.send(null);
+                var movies = JSON.parse(xhReq.responseText);
+        </script>
+
+        <br>
+        <hr>
+        <h2>Filmtitel hier suchen und auswählen:</h2>
+        <!-- GEBE SELECT2 aus -->
+        <select class="suche-select" name="movies[]" multiple="multiple"></select>
+        <br>
+        </br>
+        <script>
+                // LADE DATEN VON DER JSON IN DAS SELECT2
+                $.each(movies, function (i, item) {
+                        $('.suche-select').append($('<option>', {
+                                value: item.m_id,
+                                text : item.title 
+                        }));
+                });
+
+                // MACHE AUS DEM KLASSISCHEN SELECT EIN SELECT2
+                 $(document).ready(function() {
+                        $('.suche-select').select2();
+                });
+
+                // TRIGGER, WENN VALUE IN SELECT2 ÄNDERT
+                $('.suche-select').on("change", function (e) { saveID(); });
+
+                function saveID() {
+
+                        // DURHCSUCHE SELECT2 VALUES
+                        const selected_movies = [];
+                        var selected = $('.suche-select').select2('data');
+                        $.each(selected, function (i, item) {
+                                selected_movies.push(item.id);
+                        });
+
+                        // SPEICHERE IDS ALS STRING
+                        const selected_movies_string = selected_movies.join(',');
+
+                        // SPRECHE API2 AN
+                        var xhReq2 = new XMLHttpRequest();
+                        xhReq2.open("GET", "https://backend-api-gruppe5.herokuapp.com/recommendation?movie_id="+selected_movies_string, false);
+                        xhReq2.send(null);
+                        var recom = JSON.parse(xhReq2.responseText);
+
+                        // INIT FÜR OUTPUTS
+                        var output = "";
+                        var output2 = "";
+
+                        // DURCHSUCHE DAS JSON
+                        $.each(recom['original_movies'], function(key, val){
+                                output += '<h3>' + val.title + '</h3>';
+                        });
+                        $.each(recom['recommendation'], function(key, val){
+                                output2 += '<h3>' + val.title + '</h3>';
+                        });
+
+                        // SCHREIBE DIE DATEN IN DIE DIVs UNTEN
+                        $('#selected').html(output);
+                        $('#recom').html(output2);
+                }
+        </script>
+
+        <hr>
+        <h2>Deine ausgewählten Filme:</h2>
+        <div style="color:white"  id="selected"></div>
+        <br>
+        <hr>
+        <h2>Deine Filmempfehlungen:</h2>
+        <div style="color:white" id="recom"></div>
+        <br>
+        <hr>
+
+</body>
+</html>
