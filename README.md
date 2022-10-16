@@ -7,7 +7,7 @@
 3. The script ressources in the index.html header can be used or changed if necessary (Lines 8, 11, 12)
 4. If you are building the API on an new server, please adjust lines 30 and 73 in the index.html accordingly to new URL
 5. You can find our frontend here: https://frontend-gruppe-5.herokuapp.com
-6. If you have any trouble implemting the frontend, please contact me here: jonas.meyer.5@hs-osnabrueck.de
+6. If you have any trouble implementing the frontend, please contact me here: jonas.meyer.5@hs-osnabrueck.de
 7. Good luck :-)
 
 --> Caution: JavaScript should be enabled on the webbrowser!!!
