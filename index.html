@@ -1,10 +1,11 @@
 <!doctype html>
+<!-- Copyright 2022 / Jonas Meyer / Project @ HS Osnabrueck-->
 <html>
 <head>
         <meta charset="utf-8">
         <title>Netflix Recommendation System</title>
         <link href="/cs/style.css" rel="stylesheet">
-        <!-- JQUERY-Src von Steffen -->
+        <!-- JQUERY-Src läuft auf meinem Hetzner Server falls Heroku wieder kaputt ist-->
         <script src="https://programmierprojekt.meyer-nortrup.de/js/jquery.min.js"></script>
 
         <!-- SELECT2-Src -->
@@ -26,7 +27,7 @@
 
 
         <script>
-                // HOLE DATEN VON JSON
+                // HOLE DATEN VON LUCAS JSON-API
                 var xhReq = new XMLHttpRequest();
                 xhReq.open("GET", "https://backend-api-gruppe5.herokuapp.com/movies", false);
                 xhReq.send(null);
@@ -36,7 +37,7 @@
         <br>
         <hr>
         <h2 style="color:white">Filmtitel hier suchen und auswählen:</h2>
-        <!-- GEBE SELECT2 aus -->
+        <!-- GEBE DAS SELECT2 aus -->
         <select class="suche-select" name="movies[]" multiple="multiple"></select>
         <br>
         </br>
@@ -54,7 +55,7 @@
                         $('.suche-select').select2();
                 });
 
-                // TRIGGER, WENN VALUE IN SELECT2 ÄNDERT
+                // LAUFENDER TRIGGER, WENN VALUE IN SELECT2 ÄNDERT
                 $('.suche-select').on("change", function (e) { saveID(); });
 
                 function saveID() {
