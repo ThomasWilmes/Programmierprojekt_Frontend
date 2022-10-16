@@ -11,4 +11,5 @@
 7. Good luck :-)
 
 --> Caution: JavaScript should be enabled on the webbrowser!!!
---> Note: The index.php only importent for redirect at heroku to index.html
+----
+--> Note: The index.php is only important for redirect at heroku to index.html
