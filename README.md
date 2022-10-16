@@ -15,3 +15,5 @@
 --> Caution: Resources must be accessible and available online. Otherwise SELECT2 from select2.org will not work!
 
 --> Note: The index.php is only important for redirect at heroku to index.html
+
+--> Note: Header image can be easily replaced. To do this, exchange a corresponding URL in the CSS in the ".banner --> background-image:" area.
