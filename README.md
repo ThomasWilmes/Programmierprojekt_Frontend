@@ -12,5 +12,6 @@
 
 --> Caution: JavaScript should be enabled on the webbrowser!!!
 
+--> Caution: Resources must be accessible and available online. Otherwise SELECT2 from select2.org will not work!
 
 --> Note: The index.php is only important for redirect at heroku to index.html
