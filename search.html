@@ -1,137 +1,59 @@
-Last login: Sat Oct 15 17:31:59 on ttys000
-j.meyer@MacBook-Pro-von-Jonas ~ % ssh admin@meyer-nortrup.de
-admin@meyer-nortrup.de's password: 
-Welcome to Ubuntu 20.04.3 LTS (GNU/Linux 5.4.0-92-generic x86_64)
+<!doctype html>
+<html>
+<head>
+        <meta charset="utf-8">
+        <title>Netflix Recommendation System</title>
+        <link href="/cs/style.css" rel="stylesheet">
+        <!-- JQUERY-Src von Steffen -->
+        <script src="https://programmierprojekt.meyer-nortrup.de/js/jquery.min.js"></script>
 
- * Documentation:  https://help.ubuntu.com
- * Management:     https://landscape.canonical.com
- * Support:        https://ubuntu.com/advantage
+        <!-- SELECT2-Src -->
+        <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+</head>
 
-  System information as of So 16. Okt 11:03:39 CEST 2022
+<body>
+  <div class="navigation-bar">
+  <div id="navigation-container">
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Netflix_icon.svg/1200px-Netflix_icon.svg.png" width="70" height="70">
+  </div>
 
-  System load:                      0.02
-  Usage of /:                       55.5% of 737.23GB
-  Memory usage:                     22%
-  Swap usage:                       85%
-  Processes:                        230
-  Users logged in:                  1
-  IPv4 address for br-4990cb2e7e8a: 172.18.0.1
-  IPv4 address for docker0:         172.17.0.1
-  IPv4 address for ens18:           138.201.147.139
-  IPv6 address for ens18:           2a01:4f8:192:13a8::6
-
- * Super-optimized for small spaces - read how we shrank the memory
-   footprint of MicroK8s to make it the smallest full K8s around.
-
-   https://ubuntu.com/blog/microk8s-memory-optimisation
-
-78 updates can be applied immediately.
-To see these additional updates run: apt list --upgradable
-
-New release '22.04.1 LTS' available.
-Run 'do-release-upgrade' to upgrade to it.
+  <div class="banner">
+    <div class="banner__contents">
+    </div>
+  </div>
 
 
-*** System restart required ***
+        <script>
+                // HOLE DATEN VON JSON
+                var xhReq = new XMLHttpRequest();
+                xhReq.open("GET", "https://backend-api-gruppe5.herokuapp.com/movies", false);
+                xhReq.send(null);
+                var movies = JSON.parse(xhReq.responseText);
+        </script>
 
-The programs included with the Ubuntu system are free software;
-the exact distribution terms for each program are described in the
-individual files in /usr/share/doc/*/copyright.
+        <br>
+        <hr>
+        <h2>Filmtitel hier suchen und auswählen:</h2>
+        <!-- GEBE SELECT2 aus -->
+        <select class="suche-select" name="movies[]" multiple="multiple"></select>
+        <br>
+        </br>
+        <script>
+              // LADE DATEN VON DER JSON IN DAS SELECT2
+                $.each(movies, function (i, item) {
+                        $('.suche-select').append($('<option>', {
+                                value: item.m_id,
+                                text : item.title 
+                        }));
+                });
 
-Ubuntu comes with ABSOLUTELY NO WARRANTY, to the extent permitted by
-applicable law.
+                // MACHE AUS DEM KLASSISCHEN SELECT EIN SELECT2
+                $(document).ready(function() {
+                        $('.suche-select').select2();
+                });
 
-
-The programs included with the Ubuntu system are free software;
-the exact distribution terms for each program are described in the
-individual files in /usr/share/doc/*/copyright.
-
-Ubuntu comes with ABSOLUTELY NO WARRANTY, to the extent permitted by
-applicable law.
-
-Last login: Sat Oct 15 18:22:38 2022 from 77.20.238.53
-Could not chdir to home directory /home/admin: No such file or directory
-$ 
-$ 
-$ 
-$ sudo -i
-[sudo] password for admin: 
-root@cloud:~# cd /var/www/html
-root@cloud:/var/www/html# ls
-index.html  netflix  nextcloud  phpinfo.php  roundcube  search.html  wordpress
-root@cloud:/var/www/html# cd netflix/
-root@cloud:/var/www/html/netflix# ls
-api  css          final.html   index.html  search.html  send.html  style.css  test4.html  users.json     version2.html
-cs   final2.html  index1.html  js          send1.html   static     temp.html  test5.html  version1.html
-root@cloud:/var/www/html/netflix# nano final2.html 
-root@cloud:/var/www/html/netflix# cd cs
-root@cloud:/var/www/html/netflix/cs# ls
-styles.css
-root@cloud:/var/www/html/netflix/cs# cd ..
-root@cloud:/var/www/html/netflix# cd cs
-root@cloud:/var/www/html/netflix/cs# cd ..
-root@cloud:/var/www/html/netflix# nano final2.html 
-root@cloud:/var/www/html/netflix# cd cs
-root@cloud:/var/www/html/netflix/cs# nano styles.css 
-root@cloud:/var/www/html/netflix/cs# cd ..
-root@cloud:/var/www/html/netflix# ls
-api  cs  css  final2.html  final.html  index1.html  index.html  js  search.html  send1.html  send.html  static  style.css  temp.html  test4.html  test5.html  users.json  version1.html  version2.html
-root@cloud:/var/www/html/netflix# nano final2.html 
-root@cloud:/var/www/html/netflix# cd cs
-root@cloud:/var/www/html/netflix/cs# ls
-styles.css
-root@cloud:/var/www/html/netflix/cs# nano styles.css 
-root@cloud:/var/www/html/netflix/cs# nano styles.css 
-root@cloud:/var/www/html/netflix/cs# nano syle.css
-root@cloud:/var/www/html/netflix/cs# cd ..
-root@cloud:/var/www/html/netflix# nano final2.html 
-root@cloud:/var/www/html/netflix# cd cs
-root@cloud:/var/www/html/netflix/cs# nano styles.css 
-root@cloud:/var/www/html/netflix/cs# nano systle.csss
-root@cloud:/var/www/html/netflix/cs# nano systle.css
-root@cloud:/var/www/html/netflix/cs# nano style.css
-root@cloud:/var/www/html/netflix/cs# cd ..
-root@cloud:/var/www/html/netflix# ls
-api  cs  css  final2.html  final.html  index1.html  index.html  js  search.html  send1.html  send.html  static  style.css  temp.html  test4.html  test5.html  users.json  version1.html  version2.html
-root@cloud:/var/www/html/netflix# nano final2.html 
-root@cloud:/var/www/html/netflix# cd cs
-root@cloud:/var/www/html/netflix/cs# ls
-style.css  styles.css  syle.css  systle.css
-root@cloud:/var/www/html/netflix/cs# nano syle.css 
-root@cloud:/var/www/html/netflix/cs# cd ..
-root@cloud:/var/www/html/netflix# nano final2.html 
-root@cloud:/var/www/html/netflix# cd cs
-root@cloud:/var/www/html/netflix/cs# nano style.css 
-root@cloud:/var/www/html/netflix/cs# cd ..
-root@cloud:/var/www/html/netflix# ls
-api  cs  css  final2.html  final.html  index1.html  index.html  js  search.html  send1.html  send.html  static  style.css  temp.html  test4.html  test5.html  users.json  version1.html  version2.html
-root@cloud:/var/www/html/netflix# nanon final2.html 
-
-Command 'nanon' not found, did you mean:
-
-  command 'nano' from snap nano (5.7+pkg-4057)
-  command 'nfanon' from deb nfdump (1.6.18-2)
-  command 'nano' from deb nano (4.8-1ubuntu1)
-  command 'nanoc' from deb nanoc (4.11.0-3)
-
-See 'snap info <snapname>' for additional versions.
-
-root@cloud:/var/www/html/netflix# nano final2.html 
-root@cloud:/var/www/html/netflix# cd xs
--bash: cd: xs: No such file or directory
-root@cloud:/var/www/html/netflix# cd cs
-root@cloud:/var/www/html/netflix/cs# nano style.css 
-root@cloud:/var/www/html/netflix/cs# cd ..
-root@cloud:/var/www/html/netflix# ls
-api  cs  css  final2.html  final.html  index1.html  index.html  js  search.html  send1.html  send.html  static  style.css  temp.html  test4.html  test5.html  users.json  version1.html  version2.html
-root@cloud:/var/www/html/netflix# nano final2.html 
-root@cloud:/var/www/html/netflix# nano final2.html 
-root@cloud:/var/www/html/netflix# cd js
-root@cloud:/var/www/html/netflix/js# nano jquery.min.js
-root@cloud:/var/www/html/netflix/js# cd ..
-root@cloud:/var/www/html/netflix# nano final2.html 
-
-  GNU nano 4.8                                                                                           final2.html                                                                                                      
+                // TRIGGER, WENN VALUE IN SELECT2 ÄNDERT
                 $('.suche-select').on("change", function (e) { saveID(); });
 
                 function saveID() {
